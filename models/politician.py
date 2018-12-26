@@ -10,12 +10,21 @@ class Politician(GraphObject):
   belongs = RelatedTo(PoliticalParty)
   mayor = RelatedTo(Institution)
 
-  def __init__(self, name, gender):
+  def __init__(self, name, gender, political_party_name, region_name, institution_name, charge, salary):
     self.name = name
     if (gender == 'female'):
       self.female = True
     else:
       self.male = True
+
+    if (political_party_name):
+      political_party = PoliticalParty(political_party_name)
+      self.belongs.add(political_party)
+
+    if (institution_name and charge):
+      institution = Institution(institution_name, region_name)
+      if (charge == 'Alcalde'):
+        self.mayor.add(institution, salary=salary)
 
   def getPoliticalParty(self):
     politicalPartyRelationship = self.belongs._related_objects[0]

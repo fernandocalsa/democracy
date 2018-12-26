@@ -27,16 +27,15 @@ def createPolitician(request, graph):
 
 
   # Create politician
-  political_party = PoliticalParty(political_party_name)
-  region = Region(region_name)
-  institution = Institution(institution_name)
-  institution.located.add(region)
-
-  politician = Politician(politician_name, gender)
-  politician.belongs.add(political_party)
-
-  if (charge == 'Alcalde'):
-    politician.mayor.add(institution, salary=salary)
+  politician = Politician(
+    politician_name,
+    gender,
+    political_party_name,
+    region_name,
+    institution_name,
+    charge,
+    salary
+  )
   
   graph.push(politician)
 

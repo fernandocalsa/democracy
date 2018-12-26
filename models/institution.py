@@ -9,8 +9,11 @@ class Institution(GraphObject):
   mayor = RelatedFrom("Politician", "MAYOR")
   located = RelatedTo(Region)
 
-  def __init__(self, name):
+  def __init__(self, name, region_name):
     self.name = name
+    if (region_name):
+      region = Region(region_name)
+      self.located.add(region)
 
   def serialize(self):
     return {
