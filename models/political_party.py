@@ -6,3 +6,11 @@ class PoliticalParty(GraphObject):
   name = Property()
 
   belongs = RelatedFrom("Politician", "BELONGS")
+
+  def __init__(self, name):
+    self.name = name
+
+  def serialize(self):
+    return {
+      'name': self.name
+    }

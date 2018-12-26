@@ -5,4 +5,7 @@ class Region(GraphObject):
 
   name = Property()
 
+  def __init__(self, name):
+    self.name = name
+
   located = RelatedFrom("Institution", "LOCATED")
